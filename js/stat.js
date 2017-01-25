@@ -7,16 +7,16 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.font = '16px PT Mono';
   ctx.textBaseline = 'hanging';
   ctx.fillStyle = 'rgb(0, 0, 0)';
-  function strokeTextWrite(text, color, x, y) {
+  function writeStrokeText(text, color, x, y) {
     ctx.strokeStyle = color;
     ctx.strokeText(text, x, y);
   }
-  function fillTextWrite(text, color, x, y) {
+  function writeFillText(text, color, x, y) {
     ctx.fillStyle = color;
     ctx.fillText(text, x, y);
   }
-  strokeTextWrite('Ура, Вы победили!', 'darkblue', 230, 25);
-  fillTextWrite('Список результатов:', '#000', 222, 45);
+  writeStrokeText('Ура, Вы победили!', 'darkblue', 230, 25);
+  writeFillText('Список результатов:', '#000', 222, 45);
   var max = times[0];
   for (var i = 0; i < times.length; i++) {
     var time = times[i];
@@ -49,7 +49,7 @@ window.renderStatistics = function (ctx, names, times) {
       colorGenerate();
     }
     histoDraw(100, 40);
-    strokeTextWrite(name + ':', 'black', histoX + columnIndent * i, histoHeight + 113);
-    fillTextWrite(time.toFixed(0), 'black', histoX + columnIndent * i, histoX - height + 80);
+    writeStrokeText(name + ':', 'black', histoX + columnIndent * i, histoHeight + 113);
+    writeFillText(time.toFixed(0), 'black', histoX + columnIndent * i, histoX - height + 80);
   }
 };
