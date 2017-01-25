@@ -49,7 +49,7 @@ window.renderStatistics = function (ctx, names, times) {
       colorGenerate();
     }
     histoDraw(100, 40);
-    strokeTextWrite(name + ':', 'black', histoX + columnIndent * i + 0, histoHeight + 113);
-    fillTextWrite(time.toFixed(0), 'black', histoX + columnIndent * i + 0, histoX - height + 80);
+    strokeTextWrite(name + ':', 'black', histoX + columnIndent * i, histoHeight + 113);
+    fillTextWrite(time.toFixed(0), 'black', histoX + columnIndent * i, histoX - height + 80);
   }
 };
