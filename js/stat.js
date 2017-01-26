@@ -5,22 +5,19 @@ window.renderStatistics = function (ctx, names, times) {
   var histoHeight = 150;
   // Позиционирование по оси X
   var histoX = 155;
-  // Вычитание высоты гистограмм
-  var step = histoHeight / max;
   // Интервал между колонками
   var columnIndent = 90;
   var max = times[0];
-	var curentColor = 'rgba(255, 0, 0, 1)';
+  var curentColor = 'rgba(255, 0, 0, 1)';
 
   function drawRect(x1, y1, x2, y2, color) {
     ctx.fillStyle = color;
     ctx.fillRect(x1, y1, x2, y2);
   }
 
-  drawRect('rgba(0, 0, 0, 0.7)', 110, 20, 420, 270);
-  drawRect('rgb(255, 255, 255)', 100, 10, 420, 270);
-
-	ctx.font = '16px PT Mono';
+  drawRect(110, 20, 420, 270, 'rgba(0, 0, 0, 0.7)');
+  drawRect(100, 10, 420, 270, 'rgb(255, 255, 255)');
+  ctx.font = '16px PT Mono';
   ctx.textBaseline = 'hanging';
 
   function writeStrokeText(text, color, x, y) {
@@ -42,7 +39,8 @@ window.renderStatistics = function (ctx, names, times) {
       max = times[i];
     }
   }
-
+  // Вычитание высоты гистограмм
+  var step = histoHeight / max;
   function colorGenerate() {
     return 'rgba(0, 0, ' + (Math.random() * 255).toFixed(0) + ', ' + (Math.random() * (1.5 - 0.5) + 0.5).toFixed(1) + ')';
   }
@@ -52,13 +50,13 @@ window.renderStatistics = function (ctx, names, times) {
     var name = names[i];
     var height = step * time;
 
-    if (name !== 'Вы') {
+    if (name === 'Вы') {
+      curentColor = 'rgba(255, 0, 0, 1)';
+    } else {
       curentColor = colorGenerate();
     }
-
-		drawRect(histoX + columnIndent * i, histoX - height, 40, height, curentColor);
-
-		writeStrokeText(name + ':', 'black', histoX + columnIndent * i, histoHeight + 113);
+    drawRect(histoX + columnIndent * i, histoX - height + 100, 40, height, curentColor);
+    writeStrokeText(name + ':', 'black', histoX + columnIndent * i, histoHeight + 113);
     writeFillText(time.toFixed(0), 'black', histoX + columnIndent * i, histoX - height + 80);
   }
 };
