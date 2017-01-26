@@ -1,12 +1,13 @@
 'use strict';
 window.renderStatistics = function (ctx, names, times) {
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-  ctx.fillRect(110, 20, 420, 270);
-  ctx.fillStyle = 'rgb(255, 255, 255)';
-  ctx.fillRect(100, 10, 420, 270);
+  function drawCloud(color, x1, y1, x2, y2) {
+    ctx.fillStyle = color;
+    ctx.fillRect(x1, y1, x2, y2);
+  }
+  drawCloud('rgba(0, 0, 0, 0.7)', 110, 20, 420, 270);
+  drawCloud('rgb(255, 255, 255)', 100, 10, 420, 270);
   ctx.font = '16px PT Mono';
   ctx.textBaseline = 'hanging';
-  ctx.fillStyle = 'rgb(0, 0, 0)';
   function writeStrokeText(text, color, x, y) {
     ctx.strokeStyle = color;
     ctx.strokeText(text, x, y);
@@ -35,7 +36,7 @@ window.renderStatistics = function (ctx, names, times) {
   function colorGenerate() {
     ctx.fillStyle = 'rgba(0, 0, ' + (Math.random() * 255).toFixed(0) + ', ' + (Math.random() * (1.5 - 0.5) + 0.5).toFixed(1) + ')';
   }
-  function histoDraw(bottomLine, columnWidth) {
+  function drawHisto(bottomLine, columnWidth) {
     // Отрисовка гистограммы (начальная точка по оси Х(x1) + интервал между колонками * индекс, Начальная точка У, ширина, (??? высота???))
     ctx.fillRect(histoX + columnIndent * i, (histoX - height + bottomLine), columnWidth, height);
   }
@@ -48,7 +49,7 @@ window.renderStatistics = function (ctx, names, times) {
     } else {
       colorGenerate();
     }
-    histoDraw(100, 40);
+    drawHisto(100, 40);
     writeStrokeText(name + ':', 'black', histoX + columnIndent * i, histoHeight + 113);
     writeFillText(time.toFixed(0), 'black', histoX + columnIndent * i, histoX - height + 80);
   }
