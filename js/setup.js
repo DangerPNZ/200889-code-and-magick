@@ -12,7 +12,10 @@ var coatColor = [
   'rgb(215, 210, 55)',
   'rgb(0, 0, 0)'
 ];
-var step = 1;
+var coatColorExtract = 1;
+//
+var eyesColorExtract = 1;
+var fireballColorExtract = 1;
 var eyes = document.querySelector('#wizard-eyes');
 var eyesColor = [
   'black',
@@ -48,22 +51,22 @@ userName.maxLength = 50;
    3 При достижении значения step, равному количеству элементов массива(отсчёт от нуля),
    назначаем step значение 0 (возвращаемся к первому элементу массива)*/
 coat.addEventListener('click', function () {
-  if (step === coatColor.length) {
-    step = 0;
+  if (coatColorExtract === coatColor.length) {
+    coatColorExtract = 0;
   }
-  coat.style.fill = coatColor[step++];
+  coat.style.fill = coatColor[coatColorExtract++];
 });
 
 eyes.addEventListener('click', function () {
-  if (step === eyesColor.length) {
-    step = 0;
+  if (eyesColorExtract === eyesColor.length) {
+    eyesColorExtract = 0;
   }
-  eyes.style.fill = eyesColor[step++];
+  eyes.style.fill = eyesColor[eyesColorExtract++];
 });
 
 fireball.addEventListener('click', function () {
-  if (step === fireballColor.length) {
-    step = 0;
+  if (fireballColorExtract === fireballColor.length) {
+    fireballColorExtract = 0;
   }
-  fireball.style.backgroundColor = fireballColor[step++];
+  fireball.style.backgroundColor = fireballColor[fireballColorExtract++];
 });
