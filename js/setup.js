@@ -40,11 +40,11 @@ var ENTER_KEY_CODE = 13;
 var ESCAPE_KEY_CODE = 27;
 
   // Функции для проверки соответствия keyCode
-var deactivatingEvent = function (e) {
-  return event.keyCode && e.keyCode === ESCAPE_KEY_CODE;
+var deactivatingEvent = function (event) {
+  return event.keyCode && event.keyCode === ESCAPE_KEY_CODE;
 };
-var activatingEvent = function (e) {
-  return event.keyCode && e.keyCode === ENTER_KEY_CODE;
+var activatingEvent = function (event) {
+  return event.keyCode && event.keyCode === ENTER_KEY_CODE;
 };
 
 // функция для определения статуса кнопки (нажата/не нажата) и присвоения ей соответствующего статуса aria-pressed
@@ -61,8 +61,8 @@ var manageSetupDialog = function (classManage, hiddenAttrManage, escHandlerManag
   setup.classList[classManage]('invisible'); // показываем окно настроек
   determineAriaPressed(setup, setupOpen); // переключаем статус кнопки выхова окна
   setup[hiddenAttrManage]('aria-hidden', true); // удаляем статус, говорящий о том, что данный элемент скрыт
-  document[escHandlerManage]('keydown', function (e) { // управляем добавлением слушателя, закрывающего окно настроек по esc
-    if (deactivatingEvent(e)) {
+  document[escHandlerManage]('keydown', function (event) { // управляем добавлением слушателя, закрывающего окно настроек по esc
+    if (deactivatingEvent(event)) {
       setup.classList.add('invisible');
       determineAriaPressed(setup, setupOpen); // переключаем статус aria-pressed кнопки
       setup.setAttribute('aria-hidden', true); // задаём скрытому окну настроек аттрибут aria-hidden="true"
