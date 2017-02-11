@@ -41,10 +41,10 @@ var ESCAPE_KEY_CODE = 27;
 
   // Функции для проверки соответствия keyCode
 var deactivatingEvent = function (e) {
-  return e.keyCode && e.keyCode === ESCAPE_KEY_CODE;
+  return event.keyCode && e.keyCode === ESCAPE_KEY_CODE;
 };
 var activatingEvent = function (e) {
-  return e.keyCode && e.keyCode === ENTER_KEY_CODE;
+  return event.keyCode && e.keyCode === ENTER_KEY_CODE;
 };
 
 // функция для определения статуса кнопки (нажата/не нажата) и присвоения ей соответствующего статуса aria-pressed
